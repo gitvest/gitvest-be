@@ -8,6 +8,7 @@ import lombok.ToString;
 @Builder
 @ToString
 public class CustomExceptionEntity {
+
   private String errorCode;
   private String errorMessage;
 
