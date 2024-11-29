@@ -4,7 +4,8 @@ import org.gitvest.gitvestb.global.exception.CustomException;
 import org.gitvest.gitvestb.global.exception.ExceptionEnum;
 
 public class AlreadyExistException extends CustomException {
-  public AlreadyExistException(ExceptionEnum e){
+
+  public AlreadyExistException(ExceptionEnum e) {
     super(e);
   }
 }

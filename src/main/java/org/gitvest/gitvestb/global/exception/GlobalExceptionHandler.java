@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
   @ExceptionHandler({CustomException.class})
-  public ResponseEntity<CustomExceptionEntity> exceptionHandler(HttpServletRequest request, final CustomException e){
+  public ResponseEntity<CustomExceptionEntity> exceptionHandler(HttpServletRequest request,
+      final CustomException e) {
     return ResponseEntity.status(e.getError().getStatus())
         .body(CustomExceptionEntity.builder()
             .errorCode(e.getError().getErrorCode())
