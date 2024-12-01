@@ -3,7 +3,7 @@ package org.gitvest.gitvestb.global.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.PreUpdate;
+import jakarta.persistence.PreRemove;
 import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,9 +30,8 @@ public abstract class Base {
   @Column(name = "deletedAt")
   private LocalDateTime deletedAt;
 
-
-  private LocalDateTime now() {
-    return LocalDateTime.now();
+  @PreRemove
+  private void softDelete() {
+    this.deletedAt = LocalDateTime.now();
   }
-
 }
