@@ -6,12 +6,14 @@ import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import java.time.LocalDateTime;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @SuperBuilder
+@NoArgsConstructor
 public abstract class Base {
 
   @Column(name = "createdAt", updatable = false, nullable = false)
@@ -22,9 +24,6 @@ public abstract class Base {
 
   @Column(name = "deletedAt")
   private LocalDateTime deletedAt;
-
-  public Base() {
-  }
 
   @PrePersist
   public void prePersist() {
