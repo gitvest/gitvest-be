@@ -3,12 +3,12 @@ package org.gitvest.gitvestb.global.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @MappedSuperclass
@@ -18,6 +18,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Getter
 public abstract class Base {
 
+  @CreatedDate
   @Column(name = "createdAt", updatable = false, nullable = false)
   private LocalDateTime createdAt;
 
@@ -26,13 +27,6 @@ public abstract class Base {
 
   @Column(name = "deletedAt")
   private LocalDateTime deletedAt;
-
-  @PrePersist
-  public void prePersist() {
-    LocalDateTime now = now();
-    createdAt = now;
-    updatedAt = now;
-  }
 
   @PreUpdate
   public void preUpdate() {
