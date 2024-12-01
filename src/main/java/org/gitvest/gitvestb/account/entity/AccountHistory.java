@@ -1,4 +1,4 @@
-package org.gitvest.gitvestb.order.entity;
+package org.gitvest.gitvestb.account.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,42 +7,37 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.gitvest.gitvestb.global.entity.Base;
-import org.gitvest.gitvestb.member.entity.Member;
-import org.gitvest.gitvestb.repository.entity.Repository;
 
 @Entity
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "order")
-public class Order extends Base {
+@Table(name = "accountHistory")
+public class AccountHistory extends Base {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long orderId;
+  private Long accountHistoryId;
 
   @Column(nullable = false)
-  private String tradeType;
-
-  @Column(nullable = false)
-  private String orderPriceType;
+  private String type;
 
   @Column(nullable = false)
   private Integer price;
 
   @Column(nullable = false)
-  private Integer volume;
+  private String ipji;
+
+  @Column(nullable = false)
+  private Integer fee;
 
   @ManyToOne
-  @JoinColumn(name = "owner")
-  private Member member;
-
-  @ManyToOne
-  @JoinColumn(name = "repositoryId")
-  private Repository repository;
+  @JoinColumn(name = "accountId")
+  private Account account;
 }

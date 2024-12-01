@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -19,30 +20,26 @@ import org.gitvest.gitvestb.repository.entity.Repository;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "order")
-public class Order extends Base {
+@Table(name = "orderHistory")
+public class OrderHistory extends Base {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long orderId;
+  private Long orderHistoryId;
 
   @Column(nullable = false)
-  private String tradeType;
+  private Long seller;
 
   @Column(nullable = false)
-  private String orderPriceType;
+  private Long buyer;
 
   @Column(nullable = false)
-  private Integer price;
+  private LocalDateTime completedAt;
 
   @Column(nullable = false)
-  private Integer volume;
+  private Integer fee;
 
   @ManyToOne
-  @JoinColumn(name = "owner")
-  private Member member;
-
-  @ManyToOne
-  @JoinColumn(name = "repositoryId")
-  private Repository repository;
+  @JoinColumn(name = "orderId")
+  private Order order;
 }

@@ -1,4 +1,4 @@
-package org.gitvest.gitvestb.order.entity;
+package org.gitvest.gitvestb.repository.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,35 +12,29 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.gitvest.gitvestb.global.entity.Base;
-import org.gitvest.gitvestb.member.entity.Member;
-import org.gitvest.gitvestb.repository.entity.Repository;
 
 @Entity
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "order")
-public class Order extends Base {
+@Table(name = "repositoryHistory")
+public class RepositoryHistory extends Base {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long orderId;
+  private Long repositoryHistoryId;
 
   @Column(nullable = false)
-  private String tradeType;
+  private Integer highPrice;
 
   @Column(nullable = false)
-  private String orderPriceType;
+  private Integer lowPrice;
 
   @Column(nullable = false)
-  private Integer price;
+  private Integer openingPrice;
 
   @Column(nullable = false)
-  private Integer volume;
-
-  @ManyToOne
-  @JoinColumn(name = "owner")
-  private Member member;
+  private Integer closingPrice;
 
   @ManyToOne
   @JoinColumn(name = "repositoryId")
