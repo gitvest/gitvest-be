@@ -2,6 +2,8 @@ package org.gitvest.gitvestb.order.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -29,7 +31,8 @@ public class OrderStock extends Base {
   private Long orderStockId;
 
   @Column(nullable = false)
-  private String state;
+  @Enumerated(EnumType.STRING)
+  private OrderStockState state;
 
   @OneToOne
   @JoinColumn(name = "orderId")
