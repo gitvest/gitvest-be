@@ -14,6 +14,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.gitvest.gitvestb.global.entity.Base;
+import org.gitvest.gitvestb.member.entity.Member;
 
 @Entity
 @SuperBuilder
@@ -27,11 +28,13 @@ public class OrderHistory extends Base {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long orderHistoryId;
 
-  @Column(nullable = false)
-  private Long seller;
+  @ManyToOne
+  @JoinColumn(name = "seller")
+  private Member seller;
 
-  @Column(nullable = false)
-  private Long buyer;
+  @ManyToOne
+  @JoinColumn(name = "buyer")
+  private Member buyer;
 
   @Column(nullable = false)
   private LocalDateTime completedAt;
