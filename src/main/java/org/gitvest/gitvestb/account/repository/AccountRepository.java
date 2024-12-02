@@ -1,5 +1,8 @@
 package org.gitvest.gitvestb.account.repository;
 
-public interface AccountRepository {
+import org.gitvest.gitvestb.account.entity.Account;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AccountRepository extends JpaRepository<Account, Long> {
 
 }
