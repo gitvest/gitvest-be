@@ -34,11 +34,11 @@ public class OrderStock extends Base {
   @Enumerated(EnumType.STRING)
   private OrderStockState state;
 
-  @OneToOne
+  @ManyToOne
   @JoinColumn(name = "orderId")
   private Order order;
 
-  @ManyToOne
+  @OneToOne
   @JoinColumn(name = "stockId")
   private Stock stock;
 }
