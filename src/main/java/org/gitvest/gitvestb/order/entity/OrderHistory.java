@@ -10,17 +10,17 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.gitvest.gitvestb.global.entity.Base;
-import org.gitvest.gitvestb.member.entity.Member;
-import org.gitvest.gitvestb.repository.entity.Repository;
 
 @Entity
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "orderHistory")
+@Getter
 public class OrderHistory extends Base {
 
   @Id

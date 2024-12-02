@@ -10,6 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.gitvest.gitvestb.global.entity.Base;
@@ -20,6 +21,7 @@ import org.gitvest.gitvestb.stock.entity.Stock;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "orderStock")
+@Getter
 public class OrderStock extends Base {
 
   @Id

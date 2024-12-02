@@ -10,6 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.gitvest.gitvestb.global.entity.Base;
@@ -19,6 +20,7 @@ import org.gitvest.gitvestb.global.entity.Base;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "mission")
+@Getter
 public class Mission extends Base {
 
   @Id

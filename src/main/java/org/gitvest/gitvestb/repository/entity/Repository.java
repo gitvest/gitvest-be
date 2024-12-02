@@ -9,6 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.gitvest.gitvestb.member.entity.Member;
@@ -18,6 +19,7 @@ import org.gitvest.gitvestb.member.entity.Member;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "repository")
+@Getter
 public class Repository {
 
   @Id

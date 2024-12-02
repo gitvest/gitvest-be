@@ -9,6 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.gitvest.gitvestb.global.entity.Base;
@@ -20,6 +21,7 @@ import org.gitvest.gitvestb.repository.entity.Repository;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "stock")
+@Getter
 public class Stock extends Base {
 
   @Id

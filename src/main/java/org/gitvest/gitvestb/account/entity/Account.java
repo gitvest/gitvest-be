@@ -9,6 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.gitvest.gitvestb.global.entity.Base;
@@ -19,6 +20,7 @@ import org.gitvest.gitvestb.member.entity.Member;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "account")
+@Getter
 public class Account extends Base {
 
   @Id
