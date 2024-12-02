@@ -33,7 +33,7 @@ public class AccountHistory extends Base {
   private Integer price;
 
   @Column(nullable = false)
-  private String ipji;
+  private String ipji;// 입/출금 관련 변수
 
   @Column(nullable = false)
   private Integer fee;
