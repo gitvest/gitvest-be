@@ -2,6 +2,8 @@ package org.gitvest.gitvestb.account.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -33,7 +35,8 @@ public class AccountHistory extends Base {
   private Integer price;
 
   @Column(nullable = false)
-  private String ipji;// 입/출금 관련 변수
+  @Enumerated(EnumType.STRING)
+  private TransactionType ipji;// 입/출금 관련 변수
 
   @Column(nullable = false)
   private Integer fee;
