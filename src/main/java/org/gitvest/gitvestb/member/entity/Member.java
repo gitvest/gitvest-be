@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.gitvest.gitvestb.global.entity.Base;
@@ -16,6 +17,7 @@ import org.gitvest.gitvestb.global.entity.Base;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "member")
+@Getter
 public class Member extends Base {
 
   @Id

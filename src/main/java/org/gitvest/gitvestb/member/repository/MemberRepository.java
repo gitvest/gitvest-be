@@ -1,5 +1,8 @@
 package org.gitvest.gitvestb.member.repository;
 
-public interface MemberRepository {
+import org.gitvest.gitvestb.member.entity.Member;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface MemberRepository extends JpaRepository<Member, Long> {
 
 }
