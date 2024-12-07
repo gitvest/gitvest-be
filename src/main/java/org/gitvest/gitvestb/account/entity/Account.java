@@ -35,4 +35,11 @@ public class Account extends Base {
   @JoinColumn(name = "memberId")
   private Member member;
 
+  public static Account createNewAccount(Member member) {
+    return Account.builder()
+        .accountId(null)
+        .balance(0L)
+        .member(member)
+        .build();
+  }
 }
