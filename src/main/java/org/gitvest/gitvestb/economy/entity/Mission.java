@@ -1,4 +1,4 @@
-package org.gitvest.gitvestb.member.entity;
+package org.gitvest.gitvestb.economy.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,6 +15,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.gitvest.gitvestb.global.entity.Base;
+import org.gitvest.gitvestb.member.entity.Member;
 
 @Entity
 @SuperBuilder
