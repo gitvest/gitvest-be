@@ -35,7 +35,5 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
         .build().toUriString();
 
     response.sendRedirect(redirectUrl);
-    //response.setHeader(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken);
-    //response.setStatus(HttpStatus.OK.value());
   }
 }
