@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import jakarta.persistence.EntityManager;
 import java.util.Optional;
 import org.gitvest.gitvestb.account.entity.Account;
+import org.gitvest.gitvestb.global.config.QueryDslConfig;
 import org.gitvest.gitvestb.member.entity.Member;
 import org.gitvest.gitvestb.member.repository.dto.MemberProfile;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,8 +14,10 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.Import;
 
 @DataJpaTest
+@Import(QueryDslConfig.class)
 @DisplayName("MemberRepository는")
 class MemberRepositoryTest {
 
