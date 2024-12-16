@@ -10,7 +10,7 @@ import org.gitvest.gitvestb.economy.repository.dto.MissionAttendance;
 import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
-public class EconomyRepositoryImpl implements EconomyRepositoryCustom{
+public class EconomyRepositoryImpl implements EconomyRepositoryCustom {
 
   private final JPAQueryFactory queryFactory;
 

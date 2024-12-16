@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EconomyRepository extends JpaRepository<Mission, Long>, EconomyRepositoryCustom {
+
   MissionAttendance getLastAccessDate(Long memberId);
 }
