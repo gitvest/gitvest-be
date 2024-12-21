@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 import javax.crypto.SecretKey;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.gitvest.gitvestb.auth.entity.TokenClaims;
 import org.gitvest.gitvestb.global.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -63,7 +64,7 @@ public class TokenProvider {
 
     return Jwts.builder()
         .subject(authentication.getName())
-        .claim("role", authorities)
+        .claim(TokenClaims.ROLE.getName(), authorities)
         .issuedAt(now)
         .expiration(expireDate)
         .signWith(secretKey, SIG.HS512)
@@ -99,10 +100,8 @@ public class TokenProvider {
           .parseSignedClaims(token).getPayload();
     } catch (ExpiredJwtException e) {
       return e.getClaims();
-    } catch (MalformedJwtException e) {
-      //throw new TokenException(INVALID_TOKEN);
     } catch (SecurityException e) {
-      //throw new TokenException(INVALID_JWT_SIGNATURE);
+
     }
     return null;
   }
