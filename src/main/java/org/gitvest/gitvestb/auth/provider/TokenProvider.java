@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 import javax.crypto.SecretKey;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.gitvest.gitvestb.auth.dto.OAuth2UserInfo;
 import org.gitvest.gitvestb.auth.dto.PrincipalDetails;
 import org.gitvest.gitvestb.auth.entity.TokenClaims;
 import org.gitvest.gitvestb.global.utils.StringUtil;
@@ -82,7 +83,12 @@ public class TokenProvider {
 
     Map<String, Object> attributes = new HashMap<>();
     attributes.put("id", claims.get(TokenClaims.ID.getName()));
-    PrincipalDetails principalDetails = new PrincipalDetails(attributes, "id");
+
+    OAuth2UserInfo oAuth2UserInfo = OAuth2UserInfo.builder()
+        .socialId((Long) claims.get(TokenClaims.ID.getName()))
+        .build();
+
+    PrincipalDetails principalDetails = new PrincipalDetails(oAuth2UserInfo, attributes, "id");
 
     return new UsernamePasswordAuthenticationToken(principalDetails, token, authorities);
   }

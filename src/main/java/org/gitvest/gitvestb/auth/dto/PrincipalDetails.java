@@ -13,6 +13,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 @AllArgsConstructor
 public class PrincipalDetails implements OAuth2User {
 
+  private OAuth2UserInfo oAuth2UserInfo;
   private Map<String, Object> attributes;
   private String attributeKey;
 
@@ -29,5 +30,9 @@ public class PrincipalDetails implements OAuth2User {
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     return Collections.singletonList(new SimpleGrantedAuthority("user"));
+  }
+
+  public String getEmail() {
+    return oAuth2UserInfo.getEmail();
   }
 }
