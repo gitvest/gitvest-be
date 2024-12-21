@@ -34,7 +34,6 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     // 3. userNameAttributeName 가져오기
     String userNameAttributeName = userRequest.getClientRegistration().getProviderDetails()
         .getUserInfoEndpoint().getUserNameAttributeName();
-    log.info("userNameAttributeName : {}", userNameAttributeName);
 
     // 4. 유저 정보 dto 생성
     OAuth2UserInfo oAuth2UserInfo = OAuth2UserInfo.of(registrationId, oAuth2UserAttributes);

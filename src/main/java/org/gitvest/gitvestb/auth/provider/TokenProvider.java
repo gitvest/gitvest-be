@@ -10,7 +10,9 @@ import jakarta.annotation.PostConstruct;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import javax.crypto.SecretKey;
 import lombok.RequiredArgsConstructor;
@@ -62,9 +64,13 @@ public class TokenProvider {
         .map(GrantedAuthority::getAuthority)
         .collect(Collectors.joining());
 
+    Map<String, String> claims = new HashMap<>();
+    claims.put(TokenClaims.ROLE.getName(), authorities);            // 사용자 권한
+    claims.put(TokenClaims.ID.getName(), authentication.getName()); // 사용자 소셜 id
+
     return Jwts.builder()
         .subject(authentication.getName())
-        .claim(TokenClaims.ROLE.getName(), authorities)
+        .claims(claims)
         .issuedAt(now)
         .expiration(expireDate)
         .signWith(secretKey, SIG.HS512)
@@ -82,7 +88,7 @@ public class TokenProvider {
 
   private List<SimpleGrantedAuthority> getAuthorities(Claims claims) {
     return Collections.singletonList(new SimpleGrantedAuthority(
-        claims.get("role").toString()));
+        claims.get(TokenClaims.ROLE.getName()).toString()));
   }
 
   public boolean validateToken(String token) {
@@ -108,14 +114,7 @@ public class TokenProvider {
 
   public String reissueAccessToken(String accessToken) {
     if (StringUtils.hasText(accessToken)) {
-//      Token token = tokenService.findByAccessTokenOrThrow(accessToken);
-//      String refreshToken = token.getRefreshToken();
-//
-//      if (validateToken(refreshToken)) {
-//        String reissueAccessToken = generateAccessToken(getAuthentication(refreshToken));
-//        tokenService.updateToken(reissueAccessToken, token);
-//        return reissueAccessToken;
-//      }
+      // TODO : RT 재발급
     }
     return null;
   }
