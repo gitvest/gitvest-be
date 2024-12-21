@@ -4,7 +4,6 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.Jwts.SIG;
-import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
 import java.nio.charset.StandardCharsets;
@@ -17,13 +16,13 @@ import java.util.stream.Collectors;
 import javax.crypto.SecretKey;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.gitvest.gitvestb.auth.dto.PrincipalDetails;
 import org.gitvest.gitvestb.auth.entity.TokenClaims;
 import org.gitvest.gitvestb.global.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.util.StringUtils;
@@ -81,9 +80,11 @@ public class TokenProvider {
     Claims claims = parseClaims(token);
     List<SimpleGrantedAuthority> authorities = getAuthorities(claims);
 
-    // 2. security의 User 객체 생성
-    User principal = new User(claims.getSubject(), "", authorities);
-    return new UsernamePasswordAuthenticationToken(principal, token, authorities);
+    Map<String, Object> attributes = new HashMap<>();
+    attributes.put("id", claims.get(TokenClaims.ID.getName()));
+    PrincipalDetails principalDetails = new PrincipalDetails(attributes, "id");
+
+    return new UsernamePasswordAuthenticationToken(principalDetails, token, authorities);
   }
 
   private List<SimpleGrantedAuthority> getAuthorities(Claims claims) {

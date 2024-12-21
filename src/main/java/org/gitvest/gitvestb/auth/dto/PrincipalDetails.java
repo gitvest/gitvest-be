@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.gitvest.gitvestb.member.entity.Member;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -14,7 +13,6 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 @AllArgsConstructor
 public class PrincipalDetails implements OAuth2User {
 
-  private Member member;
   private Map<String, Object> attributes;
   private String attributeKey;
 
