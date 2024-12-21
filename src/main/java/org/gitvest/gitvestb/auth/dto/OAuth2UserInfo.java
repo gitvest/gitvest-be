@@ -14,7 +14,7 @@ import org.gitvest.gitvestb.member.entity.Member;
 public class OAuth2UserInfo {
 
   private Long socialId;
-  private String name;
+  private String nickname;
   private String profile;
   private String email;
 
@@ -26,9 +26,10 @@ public class OAuth2UserInfo {
   }
 
   private static OAuth2UserInfo ofGithub(Map<String, Object> attributes) {
+
     return OAuth2UserInfo.builder()
         .socialId(Long.parseLong(String.valueOf(attributes.get("id"))))
-        .name((String)attributes.get("login"))
+        .nickname((String)attributes.get("login"))
         .profile((String)attributes.get("avatar_url"))
         .email(nvl(attributes, "email", "html_url"))
         .build();
@@ -45,7 +46,7 @@ public class OAuth2UserInfo {
     return Member.builder()
         .socialId(socialId)
         .profileImageUrl(profile)
-        .nickname(name)
+        .nickname(nickname)
         .email(email)
         .build();
   }
