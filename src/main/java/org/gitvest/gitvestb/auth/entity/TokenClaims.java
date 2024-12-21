@@ -5,7 +5,8 @@ import lombok.Getter;
 @Getter
 public enum TokenClaims {
   ROLE("ROLE"),
-  ID("ID");
+  ID("ID"),
+  NICKNAME("NICKNAME");
 
   private final String claim;
 

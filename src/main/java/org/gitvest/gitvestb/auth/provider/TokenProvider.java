@@ -7,6 +7,7 @@ import io.jsonwebtoken.Jwts.SIG;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.attribute.UserPrincipal;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -24,6 +25,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Component;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.util.StringUtils;
@@ -60,6 +62,8 @@ public class TokenProvider {
     Date now = new Date();
     Date expireDate = new Date(now.getTime() + expireTime);
 
+    OAuth2User principal = (OAuth2User) authentication.getPrincipal();
+
     String authorities = authentication.getAuthorities().stream()
         .map(GrantedAuthority::getAuthority)
         .collect(Collectors.joining());
@@ -67,6 +71,7 @@ public class TokenProvider {
     Map<String, String> claims = new HashMap<>();
     claims.put(TokenClaims.ROLE.getName(), authorities);            // 사용자 권한
     claims.put(TokenClaims.ID.getName(), authentication.getName()); // 사용자 소셜 id
+    claims.put(TokenClaims.NICKNAME.getName(), principal.getAttribute("login")); // 사용자 닉네임
 
     return Jwts.builder()
         .subject(authentication.getName())
